@@ -150,7 +150,7 @@ const Guide: NextPageWithLayout = () => {
           <PurPose register={register} setValue={setValue} watch={watch} />
         )}
         {steps === 'profile' && <Profile register={register} watch={watch} />}
-        {steps === 'nickname' && <Nickname register={register} />}
+        {steps === 'nickname' && <Nickname {...register('nickname')} />}
         {steps === 'introduce' && <Introduce register={register} />}
         {steps === 'portfolio' && <Portfolio register={register} />}
         {steps === 'contact' && <Contact register={register} />}

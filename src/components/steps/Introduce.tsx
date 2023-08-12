@@ -15,12 +15,7 @@ export default function Introduce({ register }: Props) {
         </h2>
       </div>
       <div>
-        <Input
-          label="introduce"
-          register={register}
-          type="text"
-          placeholder="한줄로 나를 표현하기."
-        />
+        <Input {...register('introduce')} placeholder="한줄로 나를 표현하기." />
       </div>
     </div>
   );

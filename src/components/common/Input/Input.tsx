@@ -1,34 +1,29 @@
+import { forwardRef } from 'react';
 import * as styles from './input.css';
-import { IFormProps } from '@/types/form';
 
-type InputProps = IFormProps & React.InputHTMLAttributes<HTMLInputElement>;
-interface Props extends InputProps {
-  type: string;
+interface Props extends React.InputHTMLAttributes<HTMLInputElement> {
   placeholder: string;
-  [key: string]: any;
 }
-export default function Input({
-  type,
-  label,
-  placeholder,
-  register,
-  ...rest
-}: Props) {
-  return (
-    <div className={styles.wrapper}>
-      <input
-        {...rest}
-        {...register(label)}
-        className={styles.input}
-        onFocus={(e) => {
-          e.target.placeholder = '';
-        }}
-        onBlur={(e) => {
-          e.target.placeholder = placeholder;
-        }}
-        placeholder={placeholder}
-        type={type}
-      />
-    </div>
-  );
-}
+
+const Input = forwardRef<HTMLInputElement, Props>(
+  ({ placeholder, ...rest }: Props, ref) => {
+    return (
+      <div className={styles.wrapper}>
+        <input
+          {...rest}
+          className={styles.input}
+          onFocus={(e) => {
+            e.target.placeholder = '';
+          }}
+          onBlur={(e) => {
+            e.target.placeholder = placeholder;
+          }}
+          placeholder={placeholder}
+          ref={ref}
+        />
+      </div>
+    );
+  },
+);
+
+export default Input;
